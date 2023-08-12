@@ -4,9 +4,14 @@ const day = document.querySelector('#day');
 const btn = document.querySelector('button');
 const output = document.querySelector('output');
 
+year.addEventListener('input', toggleDayInput);
+month.addEventListener('input', toggleDayInput);
+day.addEventListener('input', toggleBtn);
+btn.addEventListener('click', handleClick);
+
 // const inputs = [year, month, day];
 
-function enableDisableDayInput() {
+function toggleDayInput() {
 	if (year.value && month.value) {
 		day.disabled = false;
 	} else {
@@ -15,7 +20,7 @@ function enableDisableDayInput() {
 	}
 }
 
-function enableDisableBtn() {
+function toggleBtn() {
 	if (day.value) {
 		btn.disabled = false;
 	} else {
@@ -68,7 +73,3 @@ function handleClick() {
 	}
 }
 
-year.addEventListener('input', enableDisableDayInput);
-month.addEventListener('input', enableDisableDayInput);
-day.addEventListener('input', enableDisableBtn);
-btn.addEventListener('click', handleClick);
