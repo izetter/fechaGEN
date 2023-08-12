@@ -3,10 +3,22 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Isay Zetter" />
 	<title>Fecha</title>
 	<script src="index.js" defer></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	
+	<main>
+		<section>
+			<input placeholder="año" id="year" type="number" min="0" max="2023" />
+			<input placeholder="mes" id="month" type="number" min="1" max="12" />
+			<input placeholder="día" id="day" type="number" min="1" max="31" disabled />
+		</section>
+		<section>
+			<button>Calcular</button>
+			<output></output>
+		</section>
+	</main>
 </body>
 </html>
