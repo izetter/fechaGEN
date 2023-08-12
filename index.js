@@ -10,13 +10,12 @@ month.addEventListener('input', handleMonthInput);
 day.addEventListener('input', handleDayInput);
 btn.addEventListener('click', handleClick);
 
-// const inputs = [year, month, day];
-
 function handleYearInput() {
 	year.value = parseInt(year.value);
 	if (year.value > 9999) year.value = 9999;
 	if (year.value < 1) year.value = '';
 	handleMaxDayNumber();
+	toggleBtn();
 }
 
 function handleMonthInput() {
@@ -24,16 +23,27 @@ function handleMonthInput() {
 	if (month.value > 12) month.value = 12;
 	if (month.value <= 0) month.value = '';
 	handleMaxDayNumber();
+	toggleBtn();
 }
 
 function handleDayInput() {
 	if (day.value > maxDayNumber) day.value = maxDayNumber;
 	if (day.value <= 0) day.value = '';
+	toggleBtn();
 }
 
 function handleMaxDayNumber() {
 	setMaxDayNumber();
 	if (maxDayNumber < day.value) day.value = maxDayNumber;
+}
+
+function toggleBtn() {
+	if (!year.value || !month.value || !day.value) {
+		btn.disabled = true;
+		output.value = '';
+	} else {
+		btn.disabled = false;
+	}
 }
 
 function setMaxDayNumber() {
@@ -66,47 +76,29 @@ function setMaxDayNumber() {
 	}
 }
 
-// function isInputEmpty() {
-// 	if (!year.value || !month.value || !day.value) {
-// 		output.value = '';
-// 		inputs.forEach((input) => {
-// 			if (!input.value) {
-// 				input.classList.add('invalid');
-// 			} else {
-// 				input.classList.remove('invalid');
-// 			}
-// 		});
-// 	}
-// }
-
 function handleClick() {
 	const weekDayNumber = new Date(year.value, month.value - 1, day.value).getDay();
-
-	if (!year.value || !month.value || !day.value) {
-		output.value = '';
-	} else {
-		switch (weekDayNumber) {
-			case 0:
-				output.value = 'Domingo, día no laborable';
-				break;
-			case 1:
-				output.value = 'Lunes, día laborable';
-				break;
-			case 2:
-				output.value = 'Martes, día laborable';
-				break;
-			case 3:
-				output.value = 'Miércoles, día laborable';
-				break;
-			case 4:
-				output.value = 'Jueves, día laborable';
-				break;
-			case 5:
-				output.value = 'Viernes, día laborable';
-				break;
-			case 6:
-				output.value = 'Sábado, día no laborable';
-				break;
-		}
+	switch (weekDayNumber) {
+		case 0:
+			output.value = 'Domingo, día no laborable';
+			break;
+		case 1:
+			output.value = 'Lunes, día laborable';
+			break;
+		case 2:
+			output.value = 'Martes, día laborable';
+			break;
+		case 3:
+			output.value = 'Miércoles, día laborable';
+			break;
+		case 4:
+			output.value = 'Jueves, día laborable';
+			break;
+		case 5:
+			output.value = 'Viernes, día laborable';
+			break;
+		case 6:
+			output.value = 'Sábado, día no laborable';
+			break;
 	}
 }
