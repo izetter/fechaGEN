@@ -3,7 +3,7 @@ const month = document.querySelector('#month');
 const day = document.querySelector('#day');
 const btn = document.querySelector('button');
 const output = document.querySelector('output');
-// let maxDayNumber;
+let maxDayNumber = 31;
 
 year.addEventListener('input', handleDayInput);
 month.addEventListener('input', handleDayInput);
@@ -15,16 +15,14 @@ btn.addEventListener('click', handleClick);
 function handleDayInput() {
 	if (year.value && month.value) {
 		day.disabled = false;
-		setMaxDayNumber();
 	} else {
 		day.value = '';
 		day.disabled = true;
 	}
+	setMaxDayNumber();
 }
 
 function setMaxDayNumber() {
-	// console.log('setting max day...')
-	console.log(month.value)
 	switch (parseInt(month.value)) {
 		case 1:
 		case 3:
@@ -33,17 +31,24 @@ function setMaxDayNumber() {
 		case 8:
 		case 10:
 		case 12:
-			day.max = 31;
+			maxDayNumber = 31
+			day.max = maxDayNumber;
 			break;
 		case 4:
 		case 6:
 		case 9:
 		case 11:
-			day.max = 30;
+			maxDayNumber = 30
+			day.max = maxDayNumber;
 			break;
 		case 2:
-			if (year.value % 4 === 0) day.max = 29;
-			day.max = 28;
+			if (year.value % 4 === 0) {
+				maxDayNumber = 29
+				day.max = maxDayNumber;
+			} else {
+				maxDayNumber = 28;
+				day.max = maxDayNumber;
+			}
 	}
 }
 
