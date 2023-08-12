@@ -1,22 +1,49 @@
 const year = document.querySelector('#year');
 const month = document.querySelector('#month');
 const day = document.querySelector('#day');
-// const btn = document.querySelector('button');
+const btn = document.querySelector('button');
 const output = document.querySelector('output');
+// let maxDayNumber;
 
-year.addEventListener('input', toggleDayInput);
-month.addEventListener('input', toggleDayInput);
+year.addEventListener('input', handleDayInput);
+month.addEventListener('input', handleDayInput);
 // day.addEventListener('input', toggleBtn);
 btn.addEventListener('click', handleClick);
 
 // const inputs = [year, month, day];
 
-function toggleDayInput() {
+function handleDayInput() {
 	if (year.value && month.value) {
 		day.disabled = false;
+		setMaxDayNumber();
 	} else {
 		day.value = '';
 		day.disabled = true;
+	}
+}
+
+function setMaxDayNumber() {
+	// console.log('setting max day...')
+	console.log(month.value)
+	switch (parseInt(month.value)) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			day.max = 31;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			day.max = 30;
+			break;
+		case 2:
+			if (year.value % 4 === 0) day.max = 29;
+			day.max = 28;
 	}
 }
 
@@ -45,7 +72,7 @@ function handleClick() {
 	const weekDayNumber = new Date(year.value, month.value - 1, day.value).getDay();
 
 	if (!year.value || !month.value || !day.value) {
-		output.value = '';	
+		output.value = '';
 	} else {
 		switch (weekDayNumber) {
 			case 0:
@@ -72,4 +99,3 @@ function handleClick() {
 		}
 	}
 }
-
