@@ -42,12 +42,12 @@ function toggleDayInput() {
 // }
 
 function handleClick() {
-	const dayNumber = new Date(year.value, month.value - 1, day.value).getDay();
+	const weekDayNumber = new Date(year.value, month.value - 1, day.value).getDay();
 
 	if (!year.value || !month.value || !day.value) {
 		output.value = '';	
 	} else {
-		switch (dayNumber) {
+		switch (weekDayNumber) {
 			case 0:
 				output.value = 'Domingo, día no laborable';
 				break;
