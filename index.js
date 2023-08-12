@@ -13,7 +13,8 @@ btn.addEventListener('click', handleClick);
 // const inputs = [year, month, day];
 
 function handleYearInput() {
-	if (year.value <= 0) year.value = '';
+	if (year.value > 9999) year.value = 9999;
+	if (year.value < 1) year.value = '';
 	handleMaxDayNumber();
 }
 
