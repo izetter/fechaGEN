@@ -5,21 +5,28 @@ const btn = document.querySelector('button');
 const output = document.querySelector('output');
 let maxDayNumber = 31;
 
-year.addEventListener('input', handleDayInput);
-month.addEventListener('input', handleDayInput);
-// day.addEventListener('input', toggleBtn);
+year.addEventListener('input', handleYearInput);
+month.addEventListener('input', handleMonthInput);
+day.addEventListener('input', handleDayInput);
 btn.addEventListener('click', handleClick);
 
 // const inputs = [year, month, day];
 
-function handleDayInput() {
-	if (year.value && month.value) {
-		day.disabled = false;
-	} else {
-		day.value = '';
-		day.disabled = true;
-	}
+
+function handleYearInput() {
+	if (year.value <= 0) year.value = '';
 	setMaxDayNumber();
+}
+
+function handleMonthInput() {
+	if (month.value > 12) month.value = 12;
+	if (month.value <= 0) month.value = '';
+	setMaxDayNumber();
+}
+
+function handleDayInput() {
+	if (day.value > maxDayNumber) day.value = maxDayNumber;
+	if (day.value <= 0) day.value = '';
 }
 
 function setMaxDayNumber() {
@@ -52,13 +59,13 @@ function setMaxDayNumber() {
 	}
 }
 
-// function toggleBtn() {
-// 	if (day.value) {
-// 		btn.disabled = false;
-// 	} else {
-// 		btn.disabled = true;
-// 	}
-// }
+function toggleBtn() {
+	if (day.value) {
+		btn.disabled = false;
+	} else {
+		btn.disabled = true;
+	}
+}
 
 // function isInputEmpty() {
 // 	if (!year.value || !month.value || !day.value) {
