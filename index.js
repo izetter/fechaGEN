@@ -1,12 +1,12 @@
 const year = document.querySelector('#year');
 const month = document.querySelector('#month');
 const day = document.querySelector('#day');
-const btn = document.querySelector('button');
+// const btn = document.querySelector('button');
 const output = document.querySelector('output');
 
 year.addEventListener('input', toggleDayInput);
 month.addEventListener('input', toggleDayInput);
-day.addEventListener('input', toggleBtn);
+// day.addEventListener('input', toggleBtn);
 btn.addEventListener('click', handleClick);
 
 // const inputs = [year, month, day];
@@ -20,13 +20,13 @@ function toggleDayInput() {
 	}
 }
 
-function toggleBtn() {
-	if (day.value) {
-		btn.disabled = false;
-	} else {
-		btn.disabled = true;
-	}
-}
+// function toggleBtn() {
+// 	if (day.value) {
+// 		btn.disabled = false;
+// 	} else {
+// 		btn.disabled = true;
+// 	}
+// }
 
 // function isInputEmpty() {
 // 	if (!year.value || !month.value || !day.value) {
