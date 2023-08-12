@@ -1,0 +1,31 @@
+Una curiosidad:
+
+The year 1 BC is considered to be the year right before the start of the AD (Anno Domini) era.
+However, there is no year 0 in the Gregorian calendar, which means that the year immediately before AD 1 is 1 BC.
+
+To find out what day of the week December 31, 1 BC, falls on, we can use
+a tool or algorithm for calculating the day of the week for any given date.
+One commonly used algorithm is the Zeller's Congruence.
+
+Using Zeller's Congruence for December 31, 1 BC:
+
+h = (q + floor(13(m + 1)/5) + K + floor(K/4) + floor(J/4) + 5J) % 7
+
+Where:
+
+h is the day of the week (0 = Saturday, 1 = Sunday, 2 = Monday, ..., 6 = Friday)
+q is the day of the month (31)
+m is the month (12)
+K is the year of the century (1 BC => -1)
+J is the zero-based century (1 BC => 0)
+
+
+Plugging in the values:
+
+h = (31 + floor(13 * (12 + 1)/5) - 1 + floor(-1/4) + floor(0/4) + 5*0) % 7
+h = (31 + floor(13 * 13/5) - 1 + 0 + 0 + 0) % 7
+h = (31 + 33 - 1) % 7
+h = 63 % 7
+h = 0
+
+So, December 31, 1 BC, fell on a Saturday (h = 0).
