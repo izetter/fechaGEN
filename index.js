@@ -46,6 +46,17 @@ function toggleBtn() {
 	}
 }
 
+function isLeapYear(year) {
+	if (year % 4 === 0) {
+		if (year % 100 === 0) {
+			if (year % 400 === 0) return true;
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
 function setMaxDayNumber() {
 	switch (parseInt(month.value)) {
 		case 1:
@@ -66,7 +77,7 @@ function setMaxDayNumber() {
 			day.max = maxDayNumber;
 			break;
 		case 2:
-			if (year.value % 4 === 0) {
+			if (isLeapYear(year.value)) {
 				maxDayNumber = 29;
 				day.max = maxDayNumber;
 			} else {
