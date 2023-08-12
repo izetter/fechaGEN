@@ -12,21 +12,25 @@ btn.addEventListener('click', handleClick);
 
 // const inputs = [year, month, day];
 
-
 function handleYearInput() {
 	if (year.value <= 0) year.value = '';
-	setMaxDayNumber();
+	handleMaxDayNumber();
 }
 
 function handleMonthInput() {
 	if (month.value > 12) month.value = 12;
 	if (month.value <= 0) month.value = '';
-	setMaxDayNumber();
+	handleMaxDayNumber();
 }
 
 function handleDayInput() {
 	if (day.value > maxDayNumber) day.value = maxDayNumber;
 	if (day.value <= 0) day.value = '';
+}
+
+function handleMaxDayNumber() {
+	setMaxDayNumber();
+	if (maxDayNumber < day.value) day.value = maxDayNumber;
 }
 
 function setMaxDayNumber() {
@@ -38,32 +42,24 @@ function setMaxDayNumber() {
 		case 8:
 		case 10:
 		case 12:
-			maxDayNumber = 31
+			maxDayNumber = 31;
 			day.max = maxDayNumber;
 			break;
 		case 4:
 		case 6:
 		case 9:
 		case 11:
-			maxDayNumber = 30
+			maxDayNumber = 30;
 			day.max = maxDayNumber;
 			break;
 		case 2:
 			if (year.value % 4 === 0) {
-				maxDayNumber = 29
+				maxDayNumber = 29;
 				day.max = maxDayNumber;
 			} else {
 				maxDayNumber = 28;
 				day.max = maxDayNumber;
 			}
-	}
-}
-
-function toggleBtn() {
-	if (day.value) {
-		btn.disabled = false;
-	} else {
-		btn.disabled = true;
 	}
 }
 
